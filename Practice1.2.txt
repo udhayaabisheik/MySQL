@@ -1,0 +1,95 @@
+mysql> insert into player values('Raj',26,120);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from player;
++------+------+-------+
+| name | age  | score |
++------+------+-------+
+| Raj  |   26 |   120 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into player values('Ram',28,125),('Charan',25,173),('Ravan',20,152);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from player;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Ram    |   28 |   125 |
+| Charan |   25 |   173 |
+| Ravan  |   20 |   152 |
++--------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from player where score<=10;
++--------+------+-------+
+| name   | age  | score |
++--------+------+-------+
+| Suresh |   21 |     9 |
+| Ram    |   24 |    10 |
++--------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> update player set age=30 where name='Shyam';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> select * from player where name='Shyam';
++-------+------+-------+
+| name  | age  | score |
++-------+------+-------+
+| Shyam |   30 |    10 |
++-------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> delete from player where name='David';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> alter table player add column strike_rate float;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc player;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| name        | char(20) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> select name,age from player;
++--------+------+
+| name   | age  |
++--------+------+
+| Charan |   25 |
+| Ravan  |   20 |
+| Suresh |   21 |
+| Ram    |   24 |
+| Shyam  |   30 |
++--------+------+
+5 rows in set (0.00 sec)
+
+mysql> alter table player change column name full_name char(20);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc player;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| full_name   | char(20) | YES  |     | NULL    |       |
+| age         | int      | YES  |     | NULL    |       |
+| score       | int      | YES  |     | NULL    |       |
+| strike_rate | float    | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> truncate table player;
+Query OK, 0 rows affected (0.02 sec)

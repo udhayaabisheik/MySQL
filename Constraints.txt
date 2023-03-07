@@ -1,0 +1,83 @@
+mysql> create table sailor(sid int auto_increment not null primary key,name varchar(20),dob date,gender char(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc sailor;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| sid    | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| dob    | date        | YES  |     | NULL    |                |
+| gender | char(10)    | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select *  from sailor;
++-----+----------+------------+--------+
+| sid | name     | dob        | gender |
++-----+----------+------------+--------+
+|   1 | Muthu    | 1999-04-28 | Male   |
+|   2 | Rajesh   | 2000-07-18 | Male   |
+|   3 | Sudhan   | 1999-11-03 | Male   |
+|   4 | Priya    | 1999-02-21 | Female |
+|   5 | Santhiya | 2000-12-03 | Female |
++-----+----------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> create table boat(bid int auto_increment not null primary key,btype varchar(20),bname varchar(20),color char(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> alter table boat auto_increment=001;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc boat;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| bid   | int         | NO   | PRI | NULL    | auto_increment |
+| btype | varchar(20) | YES  |     | NULL    |                |
+| bname | varchar(20) | YES  |     | NULL    |                |
+| color | char(20)    | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from boat;
++-----+--------------+---------------+-------+
+| bid | btype        | bname         | color |
++-----+--------------+---------------+-------+
+| 101 | Deluxe       | Fishing       | Brown |
+| 102 | Super Deluxe | Deck          | White |
+| 103 | Super Deluxe | Houseboat     | Blue  |
+| 104 | Deluxe       | Cabin Crusier | Black |
++-----+--------------+---------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table sails(sid int,bid int,dot char(10),shift char(10),foreign key(sid) references sailor(sid),foreign key(bid) references boat(bid));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc sails;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| sid   | int      | YES  | MUL | NULL    |       |
+| bid   | int      | YES  | MUL | NULL    |       |
+| dot   | char(10) | YES  |     | NULL    |       |
+| shift | char(10) | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into sails(sid,bid,dot,shift) values (4,101,'2021-03-28','AN'),(2,104,'2020-11-02','FN'),(3,102,'2022-08-17','AN'),(5,103,'2021-12-01','FN');
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from sails;
++------+------+------------+-------+
+| sid  | bid  | dot        | shift |
++------+------+------------+-------+
+|    4 |  101 | 2021-03-28 | AN    |
+|    2 |  104 | 2020-11-02 | FN    |
+|    3 |  102 | 2022-08-17 | AN    |
+|    5 |  103 | 2021-12-01 | FN    |
++------+------+------------+-------+
+4 rows in set (0.00 sec)

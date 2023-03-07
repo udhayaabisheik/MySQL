@@ -1,0 +1,101 @@
+1)mysql> create table teacher(sno int,name varchar(20),department varchar(20),doj date,salary int,gender char(10));
+Query OK, 0 rows affected (0.06 sec)
+
+2)mysql> select * from teacher;
++------+--------+------------+------------+--------+--------+
+| sno  | name   | department | doj        | salary | gender |
++------+--------+------------+------------+--------+--------+
+|    1 | Mathan | History    | 2002-07-18 |  15000 | M      |
+|    2 | Priya  | History    | 2005-02-23 |  13000 | F      |
+|    3 | Rajesh | Commerce   | 2001-12-03 |  14000 | M      |
+|    4 | Divya  | English    | 2003-05-27 |  12000 | F      |
+|    5 | Kannan | Tamil      | 2005-05-15 |  14000 | M      |
+|    6 | Muthu  | Computer   | 2001-12-24 |  15000 | M      |
+|    7 | Yuraj  | Computer   | 2003-03-17 |  13500 | M      |
++------+--------+------------+------------+--------+--------+
+7 rows in set (0.00 sec)
+
+3)mysql> select * from teacher where department='History' and gender='F';
++------+-------+------------+------------+--------+--------+
+| sno  | name  | department | doj        | salary | gender |
++------+-------+------------+------------+--------+--------+
+|    2 | Priya | History    | 2005-02-23 |  13000 | F      |
++------+-------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+4)mysql> select * from teacher order by doj;
++------+--------+------------+------------+--------+--------+
+| sno  | name   | department | doj        | salary | gender |
++------+--------+------------+------------+--------+--------+
+|    3 | Rajesh | Commerce   | 2001-12-03 |  14000 | M      |
+|    6 | Muthu  | Computer   | 2001-12-24 |  15000 | M      |
+|    1 | Mathan | History    | 2002-07-18 |  15000 | M      |
+|    7 | Yuraj  | Computer   | 2003-03-17 |  13500 | M      |
+|    4 | Divya  | English    | 2003-05-27 |  12000 | F      |
+|    2 | Priya  | History    | 2005-02-23 |  13000 | F      |
+|    5 | Kannan | Tamil      | 2005-05-15 |  14000 | M      |
++------+--------+------------+------------+--------+--------+
+7 rows in set (0.00 sec)
+
+5)mysql> select name,department,salary from teacher where gender='M';
++--------+------------+--------+
+| name   | department | salary |
++--------+------------+--------+
+| Mathan | History    |  15000 |
+| Rajesh | Commerce   |  14000 |
+| Kannan | Tamil      |   9500 |
+| Muthu  | Computer   |  15000 |
+| Yuraj  | Computer   |  13500 |
+| Mersha | Computer   |  12000 |
++--------+------------+--------+
+6 rows in set (0.00 sec)
+
+6)mysql> select * from teacher where salary<10000;
++------+--------+------------+------------+--------+--------+
+| sno  | name   | department | doj        | salary | gender |
++------+--------+------------+------------+--------+--------+
+|    5 | Kannan | Tamil      | 2005-05-15 |   9500 | M      |
++------+--------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+7)mysql> insert into teacher values(8,'Mersha','Computer','2000-01-01',12000,'M');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from teacher;
++------+--------+------------+------------+--------+--------+
+| sno  | name   | department | doj        | salary | gender |
++------+--------+------------+------------+--------+--------+
+|    1 | Mathan | History    | 2002-07-18 |  15000 | M      |
+|    2 | Priya  | History    | 2005-02-23 |  13000 | F      |
+|    3 | Rajesh | Commerce   | 2001-12-03 |  14000 | M      |
+|    4 | Divya  | English    | 2003-05-27 |  12000 | F      |
+|    5 | Kannan | Tamil      | 2005-05-15 |   9500 | M      |
+|    6 | Muthu  | Computer   | 2001-12-24 |  15000 | M      |
+|    7 | Yuraj  | Computer   | 2003-03-17 |  13500 | M      |
+|    8 | Mersha | Computer   | 2000-01-01 |  12000 | M      |
++------+--------+------------+------------+--------+--------+
+8 rows in set (0.00 sec)
+
+8)mysql> select * from teacher where salary=(select min(salary) from teacher);
++------+--------+------------+------------+--------+--------+
+| sno  | name   | department | doj        | salary | gender |
++------+--------+------------+------------+--------+--------+
+|    5 | Kannan | Tamil      | 2005-05-15 |   9500 | M      |
++------+--------+------------+------------+--------+--------+
+1 row in set (0.02 sec)
+
+9)mysql> select * from teacher order by salary limit 1 offset 1;
++------+-------+------------+------------+--------+--------+
+| sno  | name  | department | doj        | salary | gender |
++------+-------+------------+------------+--------+--------+
+|    4 | Divya | English    | 2003-05-27 |  12000 | F      |
++------+-------+------------+------------+--------+--------+
+1 row in set (0.00 sec)
+
+10)mysql> select avg(salary) from teacher where department='History';
++-------------+
+| avg(salary) |
++-------------+
+|  14000.0000 |
++-------------+
+1 row in set (0.02 sec)

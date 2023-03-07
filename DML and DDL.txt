@@ -1,0 +1,122 @@
+1.a)mysql> create table student_profile(rollno int,name varchar(20),dob date,department char(20),city char(20));
+Query OK, 0 rows affected (0.04 sec)
+
+b)mysql> create table marks(rollno int,name varchar(20),mark1 int,mark2 int);
+Query OK, 0 rows affected (0.04 sec)
+
+2)mysql> insert into student_profile values(101,'Arun','1994-08-31','ECE','Coimbatore'),(102,'Sakthi','2002-04-12','CS','Tutcorin'),(103,'Abisheik','2001-02-19','MCA','Tirunelveli'),(104,'Sathish','1998-04-06','IT','Chennai'),(101,'Varun','1997-12-31','CT','Banglore');
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql>  insert into marks values(101,'Arun',70,90),(102,'Sakthi',80,85),(103,'Abisheik',80,75),(104,'Sathish',35,60),(101,'Varun',38,40);
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+3)mysql> alter table marks add total int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+4)mysql> alter table student_profile change dob dateofbirth date;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+5)mysql> desc student_profile;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| rollno      | int         | YES  |     | NULL    |       |
+| name        | varchar(20) | YES  |     | NULL    |       |
+| dateofbirth | date        | YES  |     | NULL    |       |
+| department  | char(20)    | YES  |     | NULL    |       |
+| city        | char(20)    | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc marks;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| mark1  | int         | YES  |     | NULL    |       |
+| mark2  | int         | YES  |     | NULL    |       |
+| total  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+6)mysql> show tables;
++------------------+
+| Tables_in_demodb |
++------------------+
+| customer         |
+| emp              |
+| marks            |
+| order_details    |
+| player           |
+| products         |
+| student          |
+| student_profile  |
++------------------+
+8 rows in set (0.00 sec)
+
+7)mysql> update marks set total=mark1+mark2;
+Query OK, 5 rows affected (0.03 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+8)mysql> delete from student_profile where rollno=104;
+Query OK, 1 row affected (0.03 sec)
+
+9)mysql> select * from student_profile;
++--------+----------+-------------+------------+-------------+
+| rollno | name     | dateofbirth | department | city        |
++--------+----------+-------------+------------+-------------+
+|    101 | Arun     | 1994-08-31  | ECE        | Coimbatore  |
+|    102 | Sakthi   | 2002-04-12  | CS         | Tutcorin    |
+|    103 | Abisheik | 2001-02-19  | MCA        | Tirunelveli |
+|    101 | Varun    | 1997-12-31  | CT         | Banglore    |
++--------+----------+-------------+------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from marks;
++--------+----------+-------+-------+-------+
+| rollno | name     | mark1 | mark2 | total |
++--------+----------+-------+-------+-------+
+|    101 | Arun     |    70 |    90 |   160 |
+|    102 | Sakthi   |    80 |    85 |   165 |
+|    103 | Abisheik |    80 |    75 |   155 |
+|    104 | Sathish  |    35 |    60 |    95 |
+|    101 | Varun    |    38 |    40 |    78 |
++--------+----------+-------+-------+-------+
+5 rows in set (0.00 sec)
+
+10)mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+11)mysql> alter table marks add (avg int,grade char(10));
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+12)mysql> update marks set avg=(mark1+mark2)/2;
+Query OK, 5 rows affected (0.03 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+13)mysql> update marks set grade='pass' where mark1 and mark2>40;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> update marks set grade='fail' where mark1 and mark2<40;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+12)mysql> alter table marks drop column avg;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+13)mysql> truncate student_profile;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> truncate marks;
+Query OK, 0 rows affected (0.02 sec)
+
+14)mysql> commit;
+Query OK, 0 rows affected (0.00 sec)

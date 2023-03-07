@@ -1,0 +1,80 @@
+mysql> select * from products where brand='Puma';
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Black Shirt | Clothing |   900 | Puma  |   4.80 |
++-------------+----------+-------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from products where name like'%Jeans';
++-------------+----------+-------+---------------+--------+
+| name        | category | price | brand         | rating |
++-------------+----------+-------+---------------+--------+
+| Blue Jeans  | Clothing |  2000 | Peter England |    5.0 |
+| Black Jeans | Clothing |  1800 | Pepe Jeans    |    4.8 |
+| Gray Jeans  | Clothing |  2500 | Allen Solly   |    4.9 |
++-------------+----------+-------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from products where name like'Bourban%';
++----------------------------+----------+-------+---------+--------+
+| name                       | category | price | brand   | rating |
++----------------------------+----------+-------+---------+--------+
+| Bourban Biscuits           | food     |    20 | Bourban |    5.0 |
+| Bourban Small              | food     |    40 | Bourban |    4.8 |
+| Bourban with Extra cookies | food     |    25 | Bourban |    4.5 |
++----------------------------+----------+-------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from products where category in ('chips');
++----------+----------+-------+----------+--------+
+| name     | category | price | brand    | rating |
++----------+----------+-------+----------+--------+
+| Lays     | chips    |    10 | PepsiCo  |    4.2 |
+| Bingo    | chips    |    10 | ITC      |    3.8 |
+| Pringles | chips    |   100 | Kelloggs |    5.0 |
++----------+----------+-------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from products where name like '%h_r_';
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Black Shirt | Clothing |   900 | Puma  |    4.8 |
+| Blue Shirt  | Clothing |  1000 | Nike  |    4.6 |
+| White Shirt | cloting  |  1500 | Levis |    4.5 |
++-------------+----------+-------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from products where price<=1000;
++----------------------------+----------+-------+----------+--------+
+| name                       | category | price | brand    | rating |
++----------------------------+----------+-------+----------+--------+
+| Black Shirt                | Clothing |   900 | Puma     |    4.8 |
+| Bourban Biscuits           | food     |    20 | Bourban  |    5.0 |
+| Bourban Small              | food     |    40 | Bourban  |    4.8 |
+| Bourban with Extra cookies | food     |    25 | Bourban  |    4.5 |
+| Lays                       | chips    |    10 | PepsiCo  |    4.2 |
+| Bingo                      | chips    |    10 | ITC      |    3.8 |
+| Pringles                   | chips    |   100 | Kelloggs |    5.0 |
+| Blue Shirt                 | Clothing |  1000 | Nike     |    4.6 |
++----------------------------+----------+-------+----------+--------+
+8 rows in set (0.02 sec)
+
+mysql> select * from products where rating>4.0;
++----------------------------+----------+-------+---------------+--------+
+| name                       | category | price | brand         | rating |
++----------------------------+----------+-------+---------------+--------+
+| Black Shirt                | Clothing |   900 | Puma          |    4.8 |
+| Blue Jeans                 | Clothing |  2000 | Peter England |    5.0 |
+| Black Jeans                | Clothing |  1800 | Pepe Jeans    |    4.8 |
+| Gray Jeans                 | Clothing |  2500 | Allen Solly   |    4.9 |
+| Bourban Biscuits           | food     |    20 | Bourban       |    5.0 |
+| Bourban Small              | food     |    40 | Bourban       |    4.8 |
+| Bourban with Extra cookies | food     |    25 | Bourban       |    4.5 |
+| Lays                       | chips    |    10 | PepsiCo       |    4.2 |
+| Pringles                   | chips    |   100 | Kelloggs      |    5.0 |
+| Blue Shirt                 | Clothing |  1000 | Nike          |    4.6 |
+| White Shirt                | cloting  |  1500 | Levis         |    4.5 |
++----------------------------+----------+-------+---------------+--------+
+11 rows in set (0.02 sec)

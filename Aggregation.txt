@@ -1,0 +1,213 @@
+1)mysql> select * from emp where hire_date<'1980-04-30' or hire_date>'1980-12-31';
++--------+----------+---------+---------+---------+------------+
+| emp_no | emp_name | job     | dept_no | salary  | hire_date  |
++--------+----------+---------+---------+---------+------------+
+|   1001 | Sam      | Clerk   |      10 | 4000.00 | 1985-05-05 |
+|   1002 | Arun     | Analyst |      30 | 2000.00 | 1980-03-06 |
+|   1004 | Isabella | Analyst |      30 | 2000.00 | 1990-01-08 |
+|   1006 | Mukesh   | Analyst |      30 | 2000.00 | 1981-12-05 |
+|   1007 | Safail   | Clerk   |      10 | 4000.00 | 1981-04-06 |
+|   1008 | Saran    | Clerk   |      10 | 4000.00 | 1975-08-21 |
++--------+----------+---------+---------+---------+------------+
+6 rows in set (0.00 sec)
+
+3)mysql> select emp_name from emp where (dept_no = 10 or 20) and (job='Clerk' or 'Salesman' or 'Analyst');
++----------+
+| emp_name |
++----------+
+| Sam      |
+| Safail   |
+| Saran    |
++----------+
+3 rows in set, 2 warnings (0.00 sec)
+
+4)mysql> select emp_name from emp where emp_name like'S%';
++----------+
+| emp_name |
++----------+
+| Sam      |
+| Safail   |
+| Saran    |
++----------+
+3 rows in set (0.00 sec)
+
+5)mysql> select emp_name from emp where emp_name like'%n';
++----------+
+| emp_name |
++----------+
+| Arun     |
+| Saran    |
++----------+
+2 rows in set (0.00 sec)
+
+6)mysql> select emp_name from emp where emp_name like'_a%';
++----------+
+| emp_name |
++----------+
+| Sam      |
+| Mano     |
+| Safail   |
+| Saran    |
++----------+
+4 rows in set (0.00 sec)
+
+7)mysql> show tables;
++------------------+
+| Tables_in_demodb |
++------------------+
+| customer         |
+| emp              |
+| marks            |
+| order_details    |
+| player           |
+| products         |
+| student          |
+| student_profile  |
++------------------+
+8 rows in set (0.05 sec)
+
+8)mysql> select distinct job from emp;
++----------+
+| job      |
++----------+
+| Clerk    |
+| Analyst  |
+| Salesman |
+| Manager  |
++----------+
+4 rows in set (0.00 sec)
+
+9)mysql> select emp_name from emp where job not like 'Salesman' or 'Clerk' or 'Analyst';
++----------+
+| emp_name |
++----------+
+| Sam      |
+| Arun     |
+| Isabella |
+| Mukesh   |
+| Safail   |
+| Saran    |
+| Varun    |
++----------+
+7 rows in set, 2 warnings (0.00 sec)
+
+10)mysql> select emp_name,job from emp where job not in('Salesman','Clerk','Analyst');
++----------+---------+
+| emp_name | job     |
++----------+---------+
+| Varun    | Manager |
++----------+---------+
+1 row in set (0.00 sec)
+
+11)ERROR 1054 (42S22): Unknown column 'new_salayr' in 'field list'
+mysql> select emp_name,job,salary,new_salary from emp;
++----------+----------+---------+------------+
+| emp_name | job      | salary  | new_salary |
++----------+----------+---------+------------+
+| Sam      | Clerk    | 4000.00 |    4600.00 |
+| Arun     | Analyst  | 2000.00 |    2300.00 |
+| Mano     | Salesman | 1000.00 |    1150.00 |
+| Isabell  | Analyst  | 2000.00 |    2300.00 |
+| Kumar    | Salesman | 1000.00 |    1150.00 |
+| Mukesh   | Analyst  | 2000.00 |    2300.00 |
+| Safail   | Clerk    | 4000.00 |    4600.00 |
+| Saran    | Clerk    | 4000.00 |    4600.00 |
+| Varun    | Manager  | 5000.00 |    5750.00 |
++----------+----------+---------+------------+
+9 rows in set (0.00 sec)
+
+12)mysql> select emp_name,salary from emp order by salary;
++----------+---------+
+| emp_name | salary  |
++----------+---------+
+| Mano     | 1000.00 |
+| Kumar    | 1000.00 |
+| Arun     | 2000.00 |
+| Isabella | 2000.00 |
+| Mukesh   | 2000.00 |
+| Sam      | 4000.00 |
+| Safail   | 4000.00 |
+| Saran    | 4000.00 |
+| Varun    | 5000.00 |
++----------+---------+
+9 rows in set (0.00 sec)
+
+13)mysql> select emp_name from emp where emp_name like '%ll';
++----------+
+| emp_name |
++----------+
+| Isabell  |
++----------+
+1 row in set (0.00 sec)
+
+14)mysql> select emp_name from emp where emp_name like'___a%';
++----------+
+| emp_name |
++----------+
+| Kumar    |
+| Safail   |
+| Saran    |
++----------+
+3 rows in set (0.00 sec)
+
+15)mysql> select emp_name,job,salary from emp where salary<2000 or salary>3000;
++----------+----------+---------+
+| emp_name | job      | salary  |
++----------+----------+---------+
+| Sam      | Clerk    | 4000.00 |
+| Mano     | Salesman | 1000.00 |
+| Kumar    | Salesman | 1000.00 |
+| Safail   | Clerk    | 4000.00 |
+| Saran    | Clerk    | 4000.00 |
+| Varun    | Manager  | 5000.00 |
++----------+----------+---------+
+6 rows in set (0.00 sec)
+
+16)mysql> select emp_name,job,salary,hire_date from emp where job not in('Manager');
++----------+----------+---------+------------+
+| emp_name | job      | salary  | hire_date  |
++----------+----------+---------+------------+
+| Sam      | Clerk    | 4000.00 | 1985-05-05 |
+| Arun     | Analyst  | 2000.00 | 1980-03-06 |
+| Mano     | Salesman | 1000.00 | 1980-08-21 |
+| Isabell  | Analyst  | 2000.00 | 1990-01-08 |
+| Kumar    | Salesman | 1000.00 | 1980-05-18 |
+| Mukesh   | Analyst  | 2000.00 | 1981-12-05 |
+| Safail   | Clerk    | 4000.00 | 1981-04-06 |
+| Saran    | Clerk    | 4000.00 | 1975-08-21 |
++----------+----------+---------+------------+
+8 rows in set (0.00 sec)
+
+17)mysql> select emp_name,hire_date from emp where hire_date>='1981-01-01' and hire_date<='1981-12-31';
++----------+------------+
+| emp_name | hire_date  |
++----------+------------+
+| Mukesh   | 1981-12-05 |
+| Safail   | 1981-04-06 |
++----------+------------+
+2 rows in set (0.00 sec)
+
+18)mysql> select emp_name,hire_date from emp where hire_date>='1981-01-01' and hire_date<='1981-06-30';
++----------+------------+
+| emp_name | hire_date  |
++----------+------------+
+| Safail   | 1981-04-06 |
++----------+------------+
+1 row in set (0.00 sec)
+
+
+19)mysql> select * from emp where emp_name='Mano';
++--------+----------+----------+---------+---------+------------+---------------+------------+
+| emp_no | emp_name | job      | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+----------+----------+---------+---------+------------+---------------+------------+
+|   1003 | Mano     | Salesman |      20 | 1000.00 |    1150.00 |       3000.00 | 1980-08-21 |
++--------+----------+----------+---------+---------+------------+---------------+------------+
+1 row in set (0.00 sec)
+
+20)mysql> select * from emp where hire_date>'1981-12-01' and hire_date<'1981-12-31';
++--------+----------+---------+---------+---------+------------+---------------+------------+
+| emp_no | emp_name | job     | dept_no | salary  | new_salary | triple_salary | hire_date  |
++--------+----------+---------+---------+---------+------------+---------------+------------+
+|   1006 | Mukesh   | Analyst |      30 | 2000.00 |    2300.00 |          NULL | 1981-12-05 |
++--------+----------+---------+---------+---------+------------+---------------+------------+
+1 row in set (0.03 sec)

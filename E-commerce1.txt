@@ -1,0 +1,93 @@
+mysql> select * from products where category = 'Clothing' and price < 700;
++------------+----------+-------+---------------+--------+
+| name       | category | price | brand         | rating |
++------------+----------+-------+---------------+--------+
+| Blue Jeans | Clothing |   600 | Peter England |    5.0 |
++------------+----------+-------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from products where brand = 'Denim' and rating > 4;
++--------------+----------+-------+-------+--------+
+| name         | category | price | brand | rating |
++--------------+----------+-------+-------+--------+
+| White Jeans  | Clothing |   800 | Denim |    4.8 |
+| Yellow Shirt | Clothing |  1000 | Denim |    4.5 |
++--------------+----------+-------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from products where price <= 1000 and rating > 4.0;
++----------------------------+----------+-------+---------------+--------+
+| name                       | category | price | brand         | rating |
++----------------------------+----------+-------+---------------+--------+
+| Black Shirt                | Clothing |   900 | Puma          |    4.8 |
+| Blue Jeans                 | Clothing |   600 | Peter England |    5.0 |
+| Bourban Biscuits           | food     |    20 | Bourban       |    5.0 |
+| Bourban Small              | food     |    40 | Bourban       |    4.8 |
+| Bourban with Extra cookies | food     |    25 | Bourban       |    4.5 |
+| Lays                       | chips    |    10 | PepsiCo       |    4.2 |
+| Pringles                   | chips    |   100 | Kelloggs      |    5.0 |
+| Blue Shirt                 | Clothing |  1000 | Nike          |    4.6 |
+| White Jeans                | Clothing |   800 | Denim         |    4.8 |
+| Yellow Shirt               | Clothing |  1000 | Denim         |    4.5 |
++----------------------------+----------+-------+---------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from products where rating > 3.6 and price < 1000 and brand='Puma';
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Black Shirt | Clothing |   900 | Puma  |    4.8 |
++-------------+----------+-------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from products where brand='Puma' or brand='Denim' or brand='Nike';
++--------------+----------+-------+-------+--------+
+| name         | category | price | brand | rating |
++--------------+----------+-------+-------+--------+
+| Black Shirt  | Clothing |   900 | Puma  |    4.8 |
+| Blue Shirt   | Clothing |  1000 | Nike  |    4.6 |
+| White Jeans  | Clothing |   800 | Denim |    4.8 |
+| Yellow Shirt | Clothing |  1000 | Denim |    4.5 |
++--------------+----------+-------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from products where (brand='Redmi' and rating > 4) or brand='OnePlus';
++-------------+-------------+-------+---------+--------+
+| name        | category    | price | brand   | rating |
++-------------+-------------+-------+---------+--------+
+| Redmi M     | Electronics |  8000 | Redmi   |    4.8 |
+| Redmi Note  | Electronics | 10000 | Redmi   |    4.5 |
+| OnePlus Two | Electronics | 30000 | OnePlus |    5.0 |
+| OnePlus One | Electronics | 20000 | OnePlus |    4.8 |
++-------------+-------------+-------+---------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from products where name like'%Cake' and (brand='Cadbury' or brand='Britannia') and rating > 4.0;
++-------------------+----------+-------+-----------+--------+
+| name              | category | price | brand     | rating |
++-------------------+----------+-------+-----------+--------+
+| Choclate Cake     | cakes    |   300 | Cadbury   |    4.2 |
+| Vanilla Cake      | cakes    |   200 | Cadbury   |    4.5 |
+| Blackcurrent Cake | cakes    |   350 | Britannia |    4.5 |
+| Butterscotch Cake | cakes    |   300 | Britannia |    4.3 |
++-------------------+----------+-------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from products where (brand='Puma' and rating > 3.5) or (brand='Denim' and rating > 4.0);
++--------------+----------+-------+-------+--------+
+| name         | category | price | brand | rating |
++--------------+----------+-------+-------+--------+
+| Black Shirt  | Clothing |   900 | Puma  |    4.8 |
+| White Jeans  | Clothing |   800 | Denim |    4.8 |
+| Yellow Shirt | Clothing |  1000 | Denim |    4.5 |
++--------------+----------+-------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from products where name like'%Shirt' and (brand='Puma' or brand='Nike' or brand='Levis') and name not like'Black%';
++-------------+----------+-------+-------+--------+
+| name        | category | price | brand | rating |
++-------------+----------+-------+-------+--------+
+| Blue Shirt  | Clothing |  1000 | Nike  |    4.6 |
+| White Shirt | cloting  |  1500 | Levis |    4.5 |
++-------------+----------+-------+-------+--------+
+2 rows in set (0.00 sec)
